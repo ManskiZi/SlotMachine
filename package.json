@@ -1,0 +1,18 @@
+{
+  "name": "slotmachine-1",
+  "version": "1.0.0",
+  "description": "this will a slot machine game",
+  "main": "Main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "SlotMachine"
+  },
+  "author": "Devon Harvey",
+  "license": "ISC",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
