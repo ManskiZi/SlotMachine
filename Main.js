@@ -8,6 +8,29 @@
 
 const prompt = require("prompt-sync")(); // gives us acess to use a function to get user input
 
+const ROWS = 3
+const COLS = 3
+
+const SYMBOLS_COUNT = {
+    "A": 2,
+    "B": 4,
+    "C": 6,
+    "D": 8
+}// Objects allows me to have keys mapped with different values EX. "A" will give me the value of 2
+
+const SYMBOL_VALUE = {
+    "A": 5,
+    "B": 4,
+    "C": 3,
+    "D": 2
+}// whatever line you get will be multiplied by its value, also called entries 
+
+
+
+
+
+
+
 const deposit = () => {
     while (true) {
     const depositAmount = prompt("Enter a deposit amount: ")
@@ -48,6 +71,29 @@ const getBet = (balance, lines) => {
     }
 } // this detremine what the maximum bet is
 
+const spin = () => {
+    const symbols = []
+    for (const [symbol, count] of Object.entries(SYMBOLS_COUNT)){ // this gonna look through all the entires in SYMBOL_COUNT then gonna give us what the key value is
+        for (let i = 0; i < count; i++){
+            symbols.push(symbol);// this is gonna add how many symbols we have into the symbols array
+        }
+
+    }
+    const reels = [[], [],[]] // these are nested arrays(an array inside an array) each array will represent a column in our slot machine
+    for (let i = 0; i <  COLS; i++) { // this is gonna be for each reel
+        const reelSymbols = [...symbols]//its gonna copy the symbols we have aviable to choose for each reel into anothor array
+        for (let j = 0; j < ROWS; j++){
+            const randomIndex = Math.floor(Math.random() * reelSymbols.length) // will generate a random number between 0 and the length of reel minus 1
+        const selectedSymbol = reelSymbols[randomIndex]
+        reels[i].push(selectedSymbol)
+        reelSymbols.splice(randomIndex, 1)
+        }
+    }
+    return reels
+}
+
+const reels = spin()
+console.log(reels)
 let balance = deposit() // lets me change the value of the deposit
 const numberOflines = getNumberOflines()
 const bet = getBet(balance, numberOflines)
